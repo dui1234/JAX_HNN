@@ -48,7 +48,7 @@ def get_field(xmin=-1.2, xmax=1.2, ymin=-1.2, ymax=1.2, gridsize=20):
 
   # meshgrid to get vector field
   b, a = np.meshgrid(np.linspace(xmin, xmax, gridsize), np.linspace(ymin, ymax, gridsize))
-  ys = np.stack([b.flatten(), a.flatten()])
+  ys = jnp.stack([b.flatten(), a.flatten()])
 
   # get vector directions
   #dydt = [dH(y, None) for y in ys.T]
