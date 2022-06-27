@@ -71,8 +71,8 @@ def get_dataset(seed=0, samples=500, test_split=0.5, **kwargs):
     xs.append( np.stack( [x, y]).T )
     dxs.append( np.stack( [dx, dy]).T )
 
-  data['x'] = np.concatenate(xs)
-  data['dx'] = np.concatenate(dxs).squeeze()
+  data['x'] = jnp.concatenate(xs)
+  data['dx'] = jnp.concatenate(dxs).squeeze()
 
   # make a train/test split
   split_ix = int(len(data['x']) * test_split)
