@@ -16,7 +16,6 @@ def dH(coors,t):
   S = jnp.array([dpdt, -dqdt])
   return S
 
-@jit
 def get_trajectory(t_span = [0,3], timescale = 10, radius = 100, y0 = np.array([100,100]), noise_std = 0.1, **kwargs):
   t_eval = jnp.linspace(t_span[0], t_span[1], int(timescale*(t_span[1]-t_span[0]))) #The time steps
 
@@ -59,7 +58,7 @@ def get_field(xmin=-1.2, xmax=1.2, ymin=-1.2, ymax=1.2, gridsize=20):
   field['dx'] = dydt
   return field
 
-def get_dataset(seed=0, samples=500, test_split=0.5, **kwargs):
+def get_dataset(seed=0, samples=50, test_split=0.5, **kwargs):
   data = {'meta': locals()}
 
   # randomly sample inputs
