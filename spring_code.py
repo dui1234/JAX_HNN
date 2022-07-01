@@ -5,11 +5,9 @@ import matplotlib.pyplot as plt
 from jax import grad, jit, vmap
 from jax.experimental.ode import odeint
 
-@jit
 def hamiltonian_fxn(q,p):
   return p*p + q*q
 
-@jit
 def dH(coors,t):
   q,p = coors
   dqdt,dpdt = grad(hamiltonian_fxn,argnums=(0,1))(q,p)
