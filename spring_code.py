@@ -10,8 +10,8 @@ def hamiltonian_fxn(q,p):
 
 def dH(coors,t):
   q,p = coors
-  dqdt,dpdt = grad(hamiltonian_fxn,argnums=(0,1))(q,p)
-  S = jnp.array([dpdt, -dqdt])
+  dHdq,dHdp = grad(hamiltonian_fxn,argnums=(0,1))(q,p)
+  S = jnp.array([dHdp, -dHdq])
   return S
 
 def get_trajectory(t_span = [0,3], timescale = 10, radius = 100, y0 = np.array([100,100]), noise_std = 0.1, **kwargs):
