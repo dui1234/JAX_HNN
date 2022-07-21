@@ -200,7 +200,7 @@ def optimal_control(optimality,optimizer,**kwargs):
         return fun
     return solver_guess
 
-def solver(*, f, g, gbc, control, times, x0, uguess, mixing, state_interpolator, control_interpolator, unroll, jit, maxiter=1000):
+def solver(*, f, g, gbc, control, times, x0, uguess, mixing, state_interpolator, control_interpolator, unroll, jit, maxiter=1000,delta=1e-6):
     """Solve optimal control problem given state and value dynamics and boundary conditons
     Args:
         f                   : state dynamics
@@ -214,7 +214,7 @@ def solver(*, f, g, gbc, control, times, x0, uguess, mixing, state_interpolator,
         control_interpolator: interpolation function for control
     """
     init, cond, body = optimal_control_setup(f=f, g=g, gbc=gbc, control=control, \
-                                             mixing=mixing, iter_crit=iteration_criteria(1e-6), \
+                                             mixing=mixing, iter_crit=iteration_criteria(delta), \
                                              ts=times, x0 = np.array(x0),\
                                              state_interpolator=state_interpolator,\
                                              control_interpolator=control_interpolator)
